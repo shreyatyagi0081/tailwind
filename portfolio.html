@@ -204,6 +204,7 @@ I love creating modern, responsive websites and continuously improving my design
         <a href="#facebook" class="text-light text-decoration-none mx-2"><i class="fa-brands fa-facebook fa-xl" style="color: rgb(87, 65, 151);"></i></a>
       </div>
       </div>
+      <h4 id="visitor-count">👀 Visitors: Loading...</h4>
 
     </div>
 
@@ -214,5 +215,16 @@ I love creating modern, responsive websites and continuously improving my design
 </footer>
 
 </div>
+
+<script>
+fetch("https://a2oxmcuypl.execute-api.ap-south-1.amazonaws.com/visits")
+  .then(response => response.json())
+  .then(data => {
+      const result = data.body ? JSON.parse(data.body) : data;
+      document.getElementById("visitor-count").innerText =
+          "👀 Visitors: " + result.visits;
+  })
+  .catch(error => console.error(error));
+</script>
 </body>
 </html>
